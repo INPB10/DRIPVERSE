@@ -27,6 +27,26 @@ const products = [
     image: "assets/product-3.jpg",
     description: "Modern graphic style built for everyday outfits.",
     sizes: ["S", "M", "L", "XL"]
+  },
+
+  {
+    id: "gym-002",
+    name: "Core Training Tee",
+    category: "gym",
+    price: 799,
+    image: "assets/product-4.jpg",
+    description: "Minimal performance styling for training and daily wear.",
+    sizes: ["S", "M", "L", "XL"]
+  },
+
+  {
+    id: "men-002",
+    name: "Essential Oversized Tee",
+    category: "men",
+    price: 699,
+    image: "assets/product-5.jpg",
+    description: "A clean oversized silhouette made for everyday outfits.",
+    sizes: ["S", "M", "L", "XL"]
   }
 ];
 
