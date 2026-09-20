@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Product — DRIPVERSE</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+
+    .product-page {
+      min-height: 100vh;
+      background: #f7f6f2;
+      padding: 55px 25px;
+    }
+
+    .product-detail {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .product-main-image {
+      width: 100%;
+      border-radius: 18px;
+      background: #eee;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .product-detail-info h1 {
+      font-size: 42px;
+      margin: 10px 0;
+    }
+
+    .detail-category {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .detail-price {
+      font-size: 25px;
+      font-weight: 800;
+      margin: 20px 0;
+    }
+
+    .detail-description {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .size-title {
+      font-weight: 800;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .size-button {
+      min-width: 50px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .size-button.active {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+
+    .buy-button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 17px;
+      border: 0;
+      border-radius: 9px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .buy-button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .product-message {
+      margin-top: 15px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 750px) {
+
+      .product-detail {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .product-detail-info h1 {
+        font-size: 32px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="topbar">
+    ✨ Online payments only. Cash on delivery coming soon.
+  </div>
+
+
+  <header class="header">
+
+    <nav class="nav-left">
+
+      <a href="shop.html">Shop</a>
+
+      <a href="shop.html?category=gym">
+        Gym Wear
+      </a>
+
+      <a href="shop.html?category=men">
+        Men's Wear
+      </a>
+
+      <a href="shop.html?category=genz">
+        GenZ Wear
+      </a>
+
+    </nav>
+
+
+    <a href="index.html" class="logo">
+      DRIPVERSE
+    </a>
+
+
+    <nav class="nav-right">
+
+      <a href="account.html" class="icon">
+        ♙
+      </a>
+
+      <a
+        href="https://www.instagram.com/dripverse_co/"
+        target="_blank"
+        class="icon"
+      >
+        ◎
+      </a>
+
+      <a href="cart.html" class="icon">
+        🛒
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <main class="product-page">
+
+    <div
+      id="productContainer"
+      class="product-detail"
+    ></div>
+
+  </main>
+
+
+  <script type="module">
+
+    import {
+      getProductById
+    } from "./js/products.js";
+
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const productId =
+      params.get("id");
+
+
+    const product =
+      getProductById(productId);
+
+
+    const container =
+      document.getElementById(
+        "productContainer"
+      );
+
+
+    if (!product) {
+
+      container.innerHTML = `
+
+        <div>
+
+          <h1>Product not found</h1>
+
+          <p>
+            This product doesn't exist.
+          </p>
+
+          <a href="shop.html">
+            Back to shop
+          </a>
+
+        </div>
+
+      `;
+
+    } else {
+
+      container.innerHTML = `
+
+        <img
+          class="product-main-image"
+          src="${product.image}"
+          alt="${product.name}"
+        >
+
+
+        <div class="product-detail-info">
+
+          <div class="detail-category">
+            ${product.category}
+          </div>
+
+          <h1>
+            ${product.name}
+          </h1>
+
+          <div class="detail-price">
+            ₹${product.price}
+          </div>
+
+          <p class="detail-description">
+            ${product.description}
+          </p>
+
+
+          <div class="size-title">
+            Select Size
+          </div>
+
+
+          <div class="sizes">
+
+            ${product.sizes.map(size => `
+              <button
+                class="size-button"
+                data-size="${size}"
+              >
+                ${size}
+              </button>
+            `).join("")}
+
+          </div>
+
+
+          <button
+            id="buyButton"
+            class="buy-button"
+            disabled
+          >
+            SELECT A SIZE
+          </button>
+
+
+          <div
+            id="productMessage"
+            class="product-message"
+          ></div>
+
+        </div>
+
+      `;
+
+
+      let selectedSize = null;
+
+
+      const sizeButtons =
+        document.querySelectorAll(
+          ".size-button"
+        );
+
+      const buyButton =
+        document.getElementById(
+          "buyButton"
+        );
+
+
+      sizeButtons.forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            sizeButtons.forEach(btn =>
+              btn.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            selectedSize =
+              button.dataset.size;
+
+            buyButton.disabled = false;
+
+            buyButton.textContent =
+              "BUY NOW";
+
+          }
+        );
+
+      });
+
+
+      buyButton.addEventListener(
+        "click",
+        () => {
+
+          if (!selectedSize) return;
+
+
+          const cart =
+            JSON.parse(
+              localStorage.getItem(
+                "dripverse_cart"
+              ) || "[]"
+            );
+
+
+          cart.push({
+
+            id: product.id,
+
+            name: product.name,
+
+            price: product.price,
+
+            image: product.image,
+
+            size: selectedSize,
+
+            quantity: 1
+
+          });
+
+
+          localStorage.setItem(
+            "dripverse_cart",
+            JSON.stringify(cart)
+          );
+
+
+          window.location.href =
+            "cart.html";
+
+        }
+      );
+
+    }
+
+  </script>
+
+</body>
+
+</html>
