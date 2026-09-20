@@ -1,215 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DRIPVERSE — Wear Your World</title>
+  <title>DRIPVERSE — Wear Your World</title>
 
-<link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  ONLINE PAYMENTS ONLY · COD COMING SOON
-</div>
-
-<!-- HEADER -->
-<header class="header">
-
-  <!-- LEFT NAV -->
-  <nav class="nav-left">
-    <a href="shop.html">SHOP</a>
-    <a href="shop.html?category=gym">GYM WEAR</a>
-    <a href="shop.html?category=men">MEN'S WEAR</a>
-    <a href="shop.html?category=genz">GENZ WEAR</a>
-  </nav>
-
-  <!-- CENTER LOGO -->
-  <a href="index.html" class="logo">
-    DRIPVERSE
-  </a>
-
-  <!-- RIGHT NAV -->
-  <nav class="nav-right">
-    <a href="account.html" title="Account">♙</a>
-
-    <a
-      href="https://www.instagram.com/dripverse_co/"
-      target="_blank"
-      title="Instagram"
-    >◎</a>
-
-    <a href="cart.html" title="Cart">🛒</a>
-  </nav>
-
-</header>
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    <span>ONLINE PAYMENTS ONLY</span>
+    <span class="announcement-dot">•</span>
+    <span>COD COMING SOON</span>
+  </div>
 
 
-<!-- HERO -->
-<section class="hero">
+  <!-- NAVIGATION -->
+  <header class="site-header">
 
-  <div class="hero-content">
+    <div class="nav-left">
+      <a href="shop.html">SHOP</a>
+      <a href="shop.html?category=gym">GYM WEAR</a>
+      <a href="shop.html?category=men">MEN'S WEAR</a>
+      <a href="shop.html?category=genz">GENZ WEAR</a>
+    </div>
 
-    <p class="eyebrow">CONSIDERED</p>
-
-    <h1>
-      WEAR<br>
-      YOUR<br>
-      WORLD.
-    </h1>
-
-    <p class="hero-text">
-      Wear you world🔥. Trendy cloths at best price 💸
-    </p>
-
-    <p class="hero-small">
-      HOME DELIVERY · ONLINE PAYMENT
-    </p>
-
-    <a href="shop.html" class="hero-button">
-      SHOP COLLECTION
+    <a href="index.html" class="brand">
+      DRIPVERSE
     </a>
 
-  </div>
+    <div class="nav-right">
 
-</section>
+      <!-- ACCOUNT -->
+      <a href="account.html" class="icon-link" aria-label="Account">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.2"></circle>
+          <path d="M5.5 20c.7-3.4 3-5.2 6.5-5.2s5.8 1.8 6.5 5.2"></path>
+        </svg>
+      </a>
+
+      <!-- INSTAGRAM -->
+      <a
+        href="https://www.instagram.com/dripverse_co/"
+        target="_blank"
+        class="icon-link"
+        aria-label="Instagram"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <circle cx="17.2" cy="6.9" r="1"></circle>
+        </svg>
+      </a>
+
+      <!-- BAG -->
+      <a href="cart.html" class="icon-link" aria-label="Cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 8h12l1 12H5L6 8Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+      </a>
+
+    </div>
+
+  </header>
 
 
-<!-- CATEGORY SECTION -->
-<section class="categories">
+  <!-- HERO -->
+  <main>
 
-  <div class="section-heading">
-    <p>EXPLORE</p>
-    <h2>Find your style.</h2>
-  </div>
+    <section class="hero">
 
-  <div class="category-grid">
+      <img
+        src="assets/banner.jpg"
+        alt="DRIPVERSE collection"
+        class="hero-image"
+      >
 
-    <a href="shop.html?category=gym" class="category-card category-one">
-      <img src="assets/product-1.jpg" alt="Gym Wear">
-      <div class="category-overlay">
+      <div class="hero-shade"></div>
+
+      <div class="hero-content">
+
+        <div class="hero-top">
+          <span>DRIPVERSE / 01</span>
+          <span>NEW COLLECTION</span>
+        </div>
+
+        <div class="hero-center">
+
+          <p class="eyebrow">CONSIDERED</p>
+
+          <h1>
+            Wear<br>
+            <em>your</em> world.
+          </h1>
+
+          <p class="hero-description">
+            Wear you world🔥. Trendy cloths at best price 💸
+          </p>
+
+          <a href="shop.html" class="primary-button">
+            SHOP NOW
+            <span>↗</span>
+          </a>
+
+        </div>
+
+        <div class="hero-bottom">
+          <span>HOME DELIVERY</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- INTRO -->
+    <section class="intro">
+
+      <div class="intro-label">
+        THE DRIPVERSE
+      </div>
+
+      <div class="intro-copy">
+        <h2>
+          Made for the<br>
+          <em>everyday.</em>
+        </h2>
+
+        <p>
+          A considered selection of everyday clothing
+          built around movement, confidence and modern
+          personal style.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+    <section class="collections">
+
+      <div class="section-head">
+        <div>
+          <span class="mini-label">EXPLORE</span>
+          <h2>Shop by category</h2>
+        </div>
+
+        <a href="shop.html" class="text-link">
+          VIEW ALL <span>↗</span>
+        </a>
+      </div>
+
+
+      <div class="collection-grid">
+
+        <!-- GYM -->
+        <a
+          href="shop.html?category=gym"
+          class="collection-card collection-large"
+        >
+          <img src="assets/product-1.jpg" alt="Gym Wear">
+
+          <div class="collection-info">
+            <span>01 / MOVEMENT</span>
+            <h3>Gym Wear</h3>
+            <p>Training essentials.</p>
+          </div>
+        </a>
+
+
+        <!-- MEN -->
+        <a
+          href="shop.html?category=men"
+          class="collection-card"
+        >
+          <img src="assets/product-2.jpg" alt="Men's Wear">
+
+          <div class="collection-info">
+            <span>02 / EVERYDAY</span>
+            <h3>Men's Wear</h3>
+            <p>Clean everyday pieces.</p>
+          </div>
+        </a>
+
+
+        <!-- GENZ -->
+        <a
+          href="shop.html?category=genz"
+          class="collection-card"
+        >
+          <img src="assets/product-3.jpg" alt="GenZ Wear">
+
+          <div class="collection-info">
+            <span>03 / EXPRESSION</span>
+            <h3>GenZ Wear</h3>
+            <p>Made to stand apart.</p>
+          </div>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- BRAND STATEMENT -->
+    <section class="brand-statement">
+
+      <div class="statement-number">
+        02
+      </div>
+
+      <div class="statement-content">
+
+        <span class="mini-label">OUR APPROACH</span>
+
+        <h2>
+          Less noise.<br>
+          More <em>style.</em>
+        </h2>
+
+        <p>
+          DRIPVERSE is about finding pieces that fit
+          naturally into your world — from the gym
+          to everyday life.
+        </p>
+
+        <a href="shop.html" class="outline-button">
+          DISCOVER DRIPVERSE
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="features">
+
+      <div class="feature-item">
         <span>01</span>
-        <h3>GYM WEAR</h3>
-        <p>TRAIN · MOVE · PERFORM</p>
+        <h3>HOME DELIVERY</h3>
+        <p>
+          Your order delivered directly
+          to your doorstep.
+        </p>
       </div>
-    </a>
 
-    <a href="shop.html?category=men" class="category-card category-two">
-      <img src="assets/product-2.jpg" alt="Men's Wear">
-      <div class="category-overlay">
+      <div class="feature-item">
         <span>02</span>
-        <h3>MEN'S WEAR</h3>
-        <p>EVERYDAY · CLEAN · MODERN</p>
+        <h3>ONLINE PAYMENT</h3>
+        <p>
+          Online payment available.
+          COD coming soon.
+        </p>
       </div>
-    </a>
 
-    <a href="shop.html?category=genz" class="category-card category-three">
-      <img src="assets/product-3.jpg" alt="GenZ Wear">
-      <div class="category-overlay">
+      <div class="feature-item">
         <span>03</span>
-        <h3>GENZ WEAR</h3>
-        <p>TRENDY · BOLD · DIFFERENT</p>
+        <h3>CONSIDERED</h3>
+        <p>
+          Trend-focused pieces selected
+          for everyday wear.
+        </p>
       </div>
-    </a>
 
-  </div>
-
-</section>
+    </section>
 
 
-<!-- STATEMENT -->
-<section class="statement">
+    <!-- INSTAGRAM -->
+    <section class="social">
 
-  <p class="statement-small">THE DRIPVERSE PHILOSOPHY</p>
+      <div class="social-inner">
 
-  <h2>
-    Style doesn't need<br>
-    to be complicated.
-  </h2>
+        <span class="mini-label">FOLLOW ALONG</span>
 
-  <p>
-    Pieces chosen for everyday confidence,
-    comfort and individuality.
-  </p>
+        <h2>
+          @dripverse_co
+        </h2>
 
-</section>
+        <p>
+          See what's happening inside DRIPVERSE.
+        </p>
 
+        <a
+          href="https://www.instagram.com/dripverse_co/"
+          target="_blank"
+          class="social-button"
+        >
+          INSTAGRAM
+          <span>↗</span>
+        </a>
 
-<!-- WHY DRIPVERSE -->
-<section class="features">
+      </div>
 
-  <div class="feature">
-    <span>01</span>
-    <h3>HOME DELIVERY</h3>
-    <p>
-      Get your order delivered straight
-      to your doorstep.
-    </p>
-  </div>
+    </section>
 
-  <div class="feature">
-    <span>02</span>
-    <h3>ONLINE PAYMENT</h3>
-    <p>
-      Online payments available.
-      COD coming soon.
-    </p>
-  </div>
-
-  <div class="feature">
-    <span>03</span>
-    <h3>CONSIDERED STYLE</h3>
-    <p>
-      Trend-focused pieces selected
-      for your everyday rotation.
-    </p>
-  </div>
-
-</section>
+  </main>
 
 
-<!-- INSTAGRAM -->
-<section class="instagram-section">
+  <!-- FOOTER -->
+  <footer class="footer">
 
-  <p>FOLLOW THE DRIPVERSE</p>
+    <div class="footer-top">
 
-  <h2>@dripverse_co</h2>
+      <a href="index.html" class="footer-brand">
+        DRIPVERSE
+      </a>
 
-  <a
-    href="https://www.instagram.com/dripverse_co/"
-    target="_blank"
-    class="outline-button"
-  >
-    VISIT INSTAGRAM
-  </a>
+      <p>
+        Wear your world.
+      </p>
 
-</section>
+    </div>
 
+    <div class="footer-bottom">
 
-<!-- FOOTER -->
-<footer class="footer">
+      <span>© 2026 DRIPVERSE</span>
 
-  <div class="footer-logo">
-    DRIPVERSE
-  </div>
+      <div>
+        <a href="shop.html">SHOP</a>
+        <a href="account.html">ACCOUNT</a>
+        <a href="cart.html">CART</a>
+        <a
+          href="https://www.instagram.com/dripverse_co/"
+          target="_blank"
+        >
+          INSTAGRAM
+        </a>
+      </div>
 
-  <div class="footer-links">
-    <a href="shop.html">SHOP</a>
-    <a href="account.html">ACCOUNT</a>
-    <a href="cart.html">CART</a>
-    <a href="https://www.instagram.com/dripverse_co/" target="_blank">
-      INSTAGRAM
-    </a>
-  </div>
+    </div>
 
-  <p>
-    © 2026 DRIPVERSE. All rights reserved.
-  </p>
-
-</footer>
+  </footer>
 
 </body>
 </html>
