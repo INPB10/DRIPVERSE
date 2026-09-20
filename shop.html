@@ -2,149 +2,242 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Shop — DRIPVERSE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="css/style.css">
 
   <style>
 
     .shop-page {
-      background: #f7f6f2;
       min-height: 100vh;
-      padding: 55px 25px;
+      background: #f4f2ed;
+      padding: 70px 5vw 110px;
     }
 
     .shop-heading {
-      max-width: 1200px;
-      margin: auto;
-      margin-bottom: 35px;
+      max-width: 1450px;
+      margin: 0 auto;
+      padding-bottom: 55px;
+      border-bottom: 1px solid #d9d6ce;
+    }
+
+    .shop-eyebrow {
+      margin: 0 0 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: #77736c;
     }
 
     .shop-heading h1 {
-      font-size: 42px;
-      margin: 0 0 8px;
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(55px, 8vw, 110px);
+      font-weight: 400;
+      line-height: .9;
+      letter-spacing: -4px;
+    }
+
+    .shop-heading h1 em {
+      font-weight: 400;
     }
 
     .shop-heading p {
-      color: #777;
-      margin: 0;
+      max-width: 500px;
+      margin: 25px 0 0;
+      color: #77736c;
+      font-size: 14px;
+      line-height: 1.7;
     }
 
     .category-filter {
-      max-width: 1200px;
-      margin: 0 auto 35px;
+      max-width: 1450px;
+      margin: 25px auto 45px;
       display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .category-filter button {
-      padding: 11px 18px;
-      border: 1px solid #ddd;
-      background: white;
-      border-radius: 30px;
-      cursor: pointer;
+      padding: 10px 17px;
+      border: 1px solid #cfcac0;
+      background: transparent;
+      color: #11110f;
+      font-family: inherit;
+      font-size: 10px;
       font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .2s ease;
     }
 
-    .category-filter button.active,
-    .category-filter button:hover {
-      background: #111;
-      color: white;
-      border-color: #111;
+    .category-filter button:hover,
+    .category-filter button.active {
+      background: #11110f;
+      color: #fff;
+      border-color: #11110f;
     }
 
     .shop-grid {
-      max-width: 1200px;
+      max-width: 1450px;
       margin: auto;
       display: grid;
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 35px 18px;
     }
 
     .shop-product {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #e8e8e8;
-      transition: .25s;
+      min-width: 0;
     }
 
-    .shop-product:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 35px rgba(0,0,0,.08);
-    }
-
-    .product-image {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      background: #eee;
+    .shop-product-link {
       display: block;
-    }
-
-    .product-info {
-      padding: 20px;
-    }
-
-    .product-info h3 {
-      margin: 0 0 8px;
-    }
-
-    .product-category {
-      color: #888;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .product-price {
-      margin-top: 12px;
-      font-weight: 800;
-      font-size: 18px;
-    }
-
-    .view-product {
-      display: block;
-      margin-top: 16px;
-      text-align: center;
-      padding: 12px;
-      background: #111;
-      color: white;
+      color: inherit;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: 700;
     }
 
-    @media (max-width: 800px) {
+    .shop-product-image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #e7e4dd;
+      aspect-ratio: 4 / 5;
+    }
+
+    .shop-product-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .shop-product:hover .shop-product-image {
+      transform: scale(1.035);
+    }
+
+    .shop-product-number {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: #fff;
+      mix-blend-mode: difference;
+    }
+
+    .shop-product-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      padding-top: 15px;
+    }
+
+    .shop-product-category {
+      margin: 0 0 6px;
+      font-size: 9px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: #858178;
+    }
+
+    .shop-product-name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .shop-product-price {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .shop-empty {
+      grid-column: 1 / -1;
+      padding: 80px 20px;
+      text-align: center;
+      border-top: 1px solid #d9d6ce;
+      border-bottom: 1px solid #d9d6ce;
+    }
+
+    .shop-empty h2 {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 40px;
+      font-weight: 400;
+    }
+
+    .shop-empty p {
+      color: #77736c;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1000px) {
 
       .shop-grid {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 700px) {
 
       .shop-page {
-        padding: 35px 15px;
+        padding: 45px 20px 80px;
+      }
+
+      .shop-heading {
+        padding-bottom: 35px;
       }
 
       .shop-heading h1 {
-        font-size: 32px;
+        font-size: 62px;
+        letter-spacing: -2.5px;
       }
 
       .shop-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 12px;
+      }
+
+      .shop-product-info {
+        display: block;
+      }
+
+      .shop-product-price {
+        display: block;
+        margin-top: 7px;
+      }
+
+    }
+
+    @media (max-width: 450px) {
+
+      .shop-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .shop-product-name {
+        font-size: 12px;
+      }
+
+      .shop-product-price {
+        font-size: 12px;
       }
 
     }
@@ -156,71 +249,27 @@
 
 <body>
 
-  <div class="topbar">
-    ✨ Online payments only. Cash on delivery coming soon.
-  </div>
-
-
-  <header class="header">
-
-    <nav class="nav-left">
-
-      <a href="shop.html">Shop</a>
-
-      <a href="shop.html?category=gym">
-        Gym Wear
-      </a>
-
-      <a href="shop.html?category=men">
-        Men's Wear
-      </a>
-
-      <a href="shop.html?category=genz">
-        GenZ Wear
-      </a>
-
-    </nav>
-
-
-    <a href="index.html" class="logo">
-      DRIPVERSE
-    </a>
-
-
-    <nav class="nav-right">
-
-      <a href="account.html" class="icon">
-        ♙
-      </a>
-
-      <a
-        href="https://www.instagram.com/dripverse_co/"
-        target="_blank"
-        class="icon"
-      >
-        ◎
-      </a>
-
-      <a href="cart.html" class="icon">
-        🛒
-      </a>
-
-    </nav>
-
-  </header>
-
 
   <main class="shop-page">
 
-    <div class="shop-heading">
 
-      <h1>Shop</h1>
+    <section class="shop-heading">
 
-      <p>
-        Explore the latest DRIPVERSE drops.
+      <p class="shop-eyebrow">
+        DRIPVERSE / THE EDIT
       </p>
 
-    </div>
+      <h1>
+        Shop <em>the drop.</em>
+      </h1>
+
+      <p>
+        Explore the current DRIPVERSE collection —
+        everyday pieces, training essentials and
+        modern street styles.
+      </p>
+
+    </section>
 
 
     <div class="category-filter">
@@ -241,16 +290,17 @@
       </button>
 
       <button data-category="genz">
-        GenZ Wear
+        Street Wear
       </button>
 
     </div>
 
 
-    <div
+    <section
       id="productGrid"
       class="shop-grid"
-    ></div>
+    ></section>
+
 
   </main>
 
@@ -279,15 +329,28 @@
 
       if (!products.length) {
 
-        grid.innerHTML =
-          "<p>No products found.</p>";
+        grid.innerHTML = `
+
+          <div class="shop-empty">
+
+            <h2>
+              Nothing here yet.
+            </h2>
+
+            <p>
+              New DRIPVERSE pieces are coming soon.
+            </p>
+
+          </div>
+
+        `;
 
         return;
 
       }
 
 
-      products.forEach(product => {
+      products.forEach((product, index) => {
 
         const card =
           document.createElement("article");
@@ -297,34 +360,48 @@
 
         card.innerHTML = `
 
-          <img
-            class="product-image"
-            src="${product.image}"
-            alt="${product.name}"
+          <a
+            class="shop-product-link"
+            href="product.html?id=${encodeURIComponent(product.id)}"
           >
 
-          <div class="product-info">
+            <div class="shop-product-image-wrap">
 
-            <div class="product-category">
-              ${product.category}
+              <img
+                class="shop-product-image"
+                src="${product.image}"
+                alt="${product.name}"
+                loading="lazy"
+              >
+
+              <span class="shop-product-number">
+                ${String(index + 1).padStart(2, "0")}
+              </span>
+
             </div>
 
-            <h3>
-              ${product.name}
-            </h3>
 
-            <div class="product-price">
-              ₹${product.price}
+            <div class="shop-product-info">
+
+              <div>
+
+                <p class="shop-product-category">
+                  ${product.category}
+                </p>
+
+                <h2 class="shop-product-name">
+                  ${product.name}
+                </h2>
+
+              </div>
+
+              <strong class="shop-product-price">
+                ₹${product.price}
+              </strong>
+
             </div>
 
-            <a
-              class="view-product"
-              href="product.html?id=${product.id}"
-            >
-              VIEW PRODUCT
-            </a>
-
-          </div>
+          </a>
 
         `;
 
@@ -336,40 +413,42 @@
     }
 
 
-    displayProducts(getProducts());
+    function setCategory(category) {
+
+      buttons.forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.category === category
+        );
+
+      });
+
+
+      if (category === "all") {
+
+        displayProducts(getProducts());
+
+      } else {
+
+        displayProducts(
+          getProductsByCategory(category)
+        );
+
+      }
+
+    }
 
 
     buttons.forEach(button => {
 
-      button.addEventListener(
-        "click",
-        () => {
+      button.addEventListener("click", () => {
 
-          buttons.forEach(btn =>
-            btn.classList.remove("active")
-          );
+        setCategory(
+          button.dataset.category
+        );
 
-          button.classList.add("active");
-
-
-          const category =
-            button.dataset.category;
-
-
-          if (category === "all") {
-
-            displayProducts(getProducts());
-
-          } else {
-
-            displayProducts(
-              getProductsByCategory(category)
-            );
-
-          }
-
-        }
-      );
+      });
 
     });
 
@@ -383,20 +462,22 @@
       params.get("category");
 
 
-    if (urlCategory) {
+    if (
+      urlCategory === "gym" ||
+      urlCategory === "men" ||
+      urlCategory === "genz"
+    ) {
 
-      const matchingButton =
-        document.querySelector(
-          `[data-category="${urlCategory}"]`
-        );
+      setCategory(urlCategory);
 
-      if (matchingButton) {
-        matchingButton.click();
-      }
+    } else {
+
+      setCategory("all");
 
     }
 
   </script>
+
 
 </body>
 
