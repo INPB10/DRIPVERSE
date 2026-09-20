@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Account — DRIPVERSE</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .account-page {
+      min-height: calc(100vh - 80px);
+      background: #f7f6f2;
+      padding: 60px 20px;
+    }
+
+    .account-box {
+      max-width: 850px;
+      margin: auto;
+      background: white;
+      border: 1px solid #e7e7e7;
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.06);
+    }
+
+    .account-title {
+      font-size: 34px;
+      margin: 0;
+    }
+
+    .account-subtitle {
+      color: #777;
+      margin-top: 8px;
+      margin-bottom: 35px;
+    }
+
+    .account-info {
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 25px 0;
+    }
+
+    .account-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+    }
+
+    .account-label {
+      color: #777;
+    }
+
+    .account-value {
+      font-weight: 700;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      padding: 14px 25px;
+      border: 1px solid #111;
+      background: #111;
+      color: white;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .account-message {
+      text-align: center;
+      padding: 50px 10px;
+    }
+
+    .account-message h2 {
+      margin-bottom: 10px;
+    }
+
+    .account-message p {
+      color: #777;
+    }
+
+    .account-message a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 13px 22px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .account-box {
+        padding: 25px 20px;
+      }
+
+      .account-title {
+        font-size: 28px;
+      }
+
+      .account-row {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .account-value {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    ✨ Online payments only. Cash on delivery coming soon.
+  </div>
+
+
+  <header class="header">
+
+    <nav class="nav-left">
+      <a href="shop.html">Shop</a>
+      <a href="shop.html?category=gym">Gym Wear</a>
+      <a href="shop.html?category=men">Men's Wear</a>
+      <a href="shop.html?category=genz">GenZ Wear</a>
+    </nav>
+
+    <a href="index.html" class="logo">DRIPVERSE</a>
+
+    <nav class="nav-right">
+
+      <a href="account.html" class="icon">♙</a>
+
+      <a
+        href="https://www.instagram.com/dripverse_co/"
+        target="_blank"
+        class="icon"
+      >◎</a>
+
+      <a href="cart.html" class="icon">🛒</a>
+
+    </nav>
+
+  </header>
+
+
+  <main class="account-page">
+
+    <div id="loading" class="account-box">
+      Loading account...
+    </div>
+
+
+    <div
+      id="accountContent"
+      class="account-box"
+      style="display:none;"
+    >
+
+      <h1 class="account-title">
+        My Account
+      </h1>
+
+      <p class="account-subtitle">
+        Welcome to DRIPVERSE.
+      </p>
+
+
+      <div class="account-info">
+
+        <div class="account-row">
+
+          <span class="account-label">
+            Name
+          </span>
+
+          <span
+            id="userName"
+            class="account-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="account-row">
+
+          <span class="account-label">
+            Email
+          </span>
+
+          <span
+            id="userEmail"
+            class="account-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="account-row">
+
+          <span class="account-label">
+            Account ID
+          </span>
+
+          <span
+            id="userId"
+            class="account-value"
+          >
+            —
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="logoutButton"
+        class="logout-btn"
+      >
+        LOG OUT
+      </button>
+
+    </div>
+
+
+    <div
+      id="notLoggedIn"
+      class="account-box account-message"
+      style="display:none;"
+    >
+
+      <h2>
+        You're not logged in
+      </h2>
+
+      <p>
+        Log in to access your DRIPVERSE account.
+      </p>
+
+      <a href="login.html">
+        LOGIN / CREATE ACCOUNT
+      </a>
+
+    </div>
+
+  </main>
+
+
+  <script type="module">
+
+    import {
+      getCurrentUser,
+      logout
+    } from "./js/auth.js";
+
+
+    const loading =
+      document.getElementById("loading");
+
+    const accountContent =
+      document.getElementById("accountContent");
+
+    const notLoggedIn =
+      document.getElementById("notLoggedIn");
+
+
+    async function loadAccount() {
+
+      const user = await getCurrentUser();
+
+      loading.style.display = "none";
+
+
+      if (!user) {
+
+        notLoggedIn.style.display = "block";
+
+        return;
+
+      }
+
+
+      document.getElementById("userName").textContent =
+        user.name || "Not provided";
+
+      document.getElementById("userEmail").textContent =
+        user.email || "—";
+
+      document.getElementById("userId").textContent =
+        user.$id || "—";
+
+
+      accountContent.style.display = "block";
+
+    }
+
+
+    document
+      .getElementById("logoutButton")
+      .addEventListener("click", async () => {
+
+        const success = await logout();
+
+        if (success) {
+          window.location.href = "login.html";
+        }
+
+      });
+
+
+    loadAccount();
+
+  </script>
+
+</body>
+</html>
