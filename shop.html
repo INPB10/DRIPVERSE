@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shop — DRIPVERSE</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+
+    .shop-page {
+      background: #f7f6f2;
+      min-height: 100vh;
+      padding: 55px 25px;
+    }
+
+    .shop-heading {
+      max-width: 1200px;
+      margin: auto;
+      margin-bottom: 35px;
+    }
+
+    .shop-heading h1 {
+      font-size: 42px;
+      margin: 0 0 8px;
+    }
+
+    .shop-heading p {
+      color: #777;
+      margin: 0;
+    }
+
+    .category-filter {
+      max-width: 1200px;
+      margin: 0 auto 35px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .category-filter button {
+      padding: 11px 18px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .category-filter button.active,
+    .category-filter button:hover {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+
+    .shop-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .shop-product {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      transition: .25s;
+    }
+
+    .shop-product:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.08);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #eee;
+      display: block;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 8px;
+    }
+
+    .product-category {
+      color: #888;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-price {
+      margin-top: 12px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .view-product {
+      display: block;
+      margin-top: 16px;
+      text-align: center;
+      padding: 12px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+
+      .shop-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 520px) {
+
+      .shop-page {
+        padding: 35px 15px;
+      }
+
+      .shop-heading h1 {
+        font-size: 32px;
+      }
+
+      .shop-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="topbar">
+    ✨ Online payments only. Cash on delivery coming soon.
+  </div>
+
+
+  <header class="header">
+
+    <nav class="nav-left">
+
+      <a href="shop.html">Shop</a>
+
+      <a href="shop.html?category=gym">
+        Gym Wear
+      </a>
+
+      <a href="shop.html?category=men">
+        Men's Wear
+      </a>
+
+      <a href="shop.html?category=genz">
+        GenZ Wear
+      </a>
+
+    </nav>
+
+
+    <a href="index.html" class="logo">
+      DRIPVERSE
+    </a>
+
+
+    <nav class="nav-right">
+
+      <a href="account.html" class="icon">
+        ♙
+      </a>
+
+      <a
+        href="https://www.instagram.com/dripverse_co/"
+        target="_blank"
+        class="icon"
+      >
+        ◎
+      </a>
+
+      <a href="cart.html" class="icon">
+        🛒
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <main class="shop-page">
+
+    <div class="shop-heading">
+
+      <h1>Shop</h1>
+
+      <p>
+        Explore the latest DRIPVERSE drops.
+      </p>
+
+    </div>
+
+
+    <div class="category-filter">
+
+      <button
+        data-category="all"
+        class="active"
+      >
+        All
+      </button>
+
+      <button data-category="gym">
+        Gym Wear
+      </button>
+
+      <button data-category="men">
+        Men's Wear
+      </button>
+
+      <button data-category="genz">
+        GenZ Wear
+      </button>
+
+    </div>
+
+
+    <div
+      id="productGrid"
+      class="shop-grid"
+    ></div>
+
+  </main>
+
+
+  <script type="module">
+
+    import {
+      getProducts,
+      getProductsByCategory
+    } from "./js/products.js";
+
+
+    const grid =
+      document.getElementById("productGrid");
+
+    const buttons =
+      document.querySelectorAll(
+        ".category-filter button"
+      );
+
+
+    function displayProducts(products) {
+
+      grid.innerHTML = "";
+
+
+      if (!products.length) {
+
+        grid.innerHTML =
+          "<p>No products found.</p>";
+
+        return;
+
+      }
+
+
+      products.forEach(product => {
+
+        const card =
+          document.createElement("article");
+
+        card.className = "shop-product";
+
+
+        card.innerHTML = `
+
+          <img
+            class="product-image"
+            src="${product.image}"
+            alt="${product.name}"
+          >
+
+          <div class="product-info">
+
+            <div class="product-category">
+              ${product.category}
+            </div>
+
+            <h3>
+              ${product.name}
+            </h3>
+
+            <div class="product-price">
+              ₹${product.price}
+            </div>
+
+            <a
+              class="view-product"
+              href="product.html?id=${product.id}"
+            >
+              VIEW PRODUCT
+            </a>
+
+          </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+      });
+
+    }
+
+
+    displayProducts(getProducts());
+
+
+    buttons.forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          buttons.forEach(btn =>
+            btn.classList.remove("active")
+          );
+
+          button.classList.add("active");
+
+
+          const category =
+            button.dataset.category;
+
+
+          if (category === "all") {
+
+            displayProducts(getProducts());
+
+          } else {
+
+            displayProducts(
+              getProductsByCategory(category)
+            );
+
+          }
+
+        }
+      );
+
+    });
+
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const urlCategory =
+      params.get("category");
+
+
+    if (urlCategory) {
+
+      const matchingButton =
+        document.querySelector(
+          `[data-category="${urlCategory}"]`
+        );
+
+      if (matchingButton) {
+        matchingButton.click();
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>
