@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Cart — DRIPVERSE</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+
+    .cart-page {
+      min-height: 100vh;
+      background: #f7f6f2;
+      padding: 55px 20px;
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .cart-title {
+      font-size: 42px;
+      margin-bottom: 30px;
+    }
+
+    .cart-item {
+      background: white;
+      border: 1px solid #e7e7e7;
+      border-radius: 15px;
+      padding: 15px;
+      display: flex;
+      gap: 18px;
+      margin-bottom: 15px;
+    }
+
+    .cart-image {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #eee;
+    }
+
+    .cart-info {
+      flex: 1;
+    }
+
+    .cart-info h3 {
+      margin: 5px 0;
+    }
+
+    .cart-info p {
+      margin: 6px 0;
+      color: #777;
+    }
+
+    .remove-button {
+      border: 0;
+      background: transparent;
+      color: #c62828;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .cart-summary {
+      background: white;
+      border: 1px solid #e7e7e7;
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 25px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .checkout-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      border: 0;
+      border-radius: 9px;
+      background: #111;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .empty-cart {
+      background: white;
+      padding: 50px 25px;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid #e7e7e7;
+    }
+
+    .empty-cart a {
+      display: inline-block;
+      margin-top: 20px;
+      background: #111;
+      color: white;
+      padding: 13px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 550px) {
+
+      .cart-title {
+        font-size: 32px;
+      }
+
+      .cart-item {
+        align-items: flex-start;
+      }
+
+      .cart-image {
+        width: 85px;
+        height: 85px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="topbar">
+    ✨ Online payments only. Cash on delivery coming soon.
+  </div>
+
+
+  <header class="header">
+
+    <nav class="nav-left">
+
+      <a href="shop.html">Shop</a>
+
+      <a href="shop.html?category=gym">
+        Gym Wear
+      </a>
+
+      <a href="shop.html?category=men">
+        Men's Wear
+      </a>
+
+      <a href="shop.html?category=genz">
+        GenZ Wear
+      </a>
+
+    </nav>
+
+
+    <a href="index.html" class="logo">
+      DRIPVERSE
+    </a>
+
+
+    <nav class="nav-right">
+
+      <a href="account.html" class="icon">
+        ♙
+      </a>
+
+      <a
+        href="https://www.instagram.com/dripverse_co/"
+        target="_blank"
+        class="icon"
+      >
+        ◎
+      </a>
+
+      <a href="cart.html" class="icon">
+        🛒
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <main class="cart-page">
+
+    <div class="cart-container">
+
+      <h1 class="cart-title">
+        Your Cart
+      </h1>
+
+
+      <div id="cartContent"></div>
+
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    const cartContent =
+      document.getElementById(
+        "cartContent"
+      );
+
+
+    function getCart() {
+
+      return JSON.parse(
+        localStorage.getItem(
+          "dripverse_cart"
+        ) || "[]"
+      );
+
+    }
+
+
+    function renderCart() {
+
+      const cart = getCart();
+
+
+      if (!cart.length) {
+
+        cartContent.innerHTML = `
+
+          <div class="empty-cart">
+
+            <h2>
+              Your cart is empty.
+            </h2>
+
+            <p>
+              Find something you like and add it here.
+            </p>
+
+            <a href="shop.html">
+              SHOP NOW
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+
+      const items =
+        cart.map((item, index) => {
+
+          total +=
+            item.price * item.quantity;
+
+
+          return `
+
+            <div class="cart-item">
+
+              <img
+                class="cart-image"
+                src="${item.image}"
+                alt="${item.name}"
+              >
+
+
+              <div class="cart-info">
+
+                <h3>
+                  ${item.name}
+                </h3>
+
+                <p>
+                  Size: ${item.size}
+                </p>
+
+                <p>
+                  ₹${item.price}
+                </p>
+
+                <button
+                  class="remove-button"
+                  onclick="removeItem(${index})"
+                >
+                  REMOVE
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }).join("");
+
+
+      cartContent.innerHTML = `
+
+        ${items}
+
+
+        <div class="cart-summary">
+
+          <div class="total-row">
+
+            <span>
+              Total
+            </span>
+
+            <span>
+              ₹${total}
+            </span>
+
+          </div>
+
+
+          <button
+            class="checkout-button"
+            onclick="checkout()"
+          >
+            PROCEED TO CHECKOUT
+          </button>
+
+        </div>
+
+      `;
+
+    }
+
+
+    function removeItem(index) {
+
+      const cart = getCart();
+
+      cart.splice(index, 1);
+
+      localStorage.setItem(
+        "dripverse_cart",
+        JSON.stringify(cart)
+      );
+
+      renderCart();
+
+    }
+
+
+    function checkout() {
+
+      alert(
+        "Online checkout will be connected next."
+      );
+
+    }
+
+
+    renderCart();
+
+  </script>
+
+</body>
+
+</html>
