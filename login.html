@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login — DRIPVERSE</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .auth-container {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: #f7f6f2;
+    }
+
+    .auth-box {
+      width: 100%;
+      max-width: 430px;
+      background: #fff;
+      padding: 42px;
+      border: 1px solid #e7e7e7;
+      border-radius: 18px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.07);
+    }
+
+    .auth-logo {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 32px;
+    }
+
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 25px;
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 13px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 700;
+      color: #888;
+    }
+
+    .auth-tab.active {
+      color: #111;
+      border-bottom: 2px solid #111;
+    }
+
+    .auth-form {
+      display: none;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .auth-form label {
+      display: block;
+      margin: 15px 0 7px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .auth-form input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 9px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .auth-form input:focus {
+      border-color: #111;
+    }
+
+    .auth-button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: 0;
+      border-radius: 9px;
+      background: #111;
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .auth-button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .auth-message {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 14px;
+      min-height: 20px;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: #111;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    ✨ Online payments only. Cash on delivery coming soon.
+  </div>
+
+  <header class="header">
+
+    <nav class="nav-left">
+      <a href="shop.html">Shop</a>
+      <a href="shop.html?category=gym">Gym Wear</a>
+      <a href="shop.html?category=men">Men's Wear</a>
+      <a href="shop.html?category=genz">GenZ Wear</a>
+    </nav>
+
+    <a href="index.html" class="logo">DRIPVERSE</a>
+
+    <nav class="nav-right">
+      <a href="account.html" class="icon">♙</a>
+
+      <a
+        href="https://www.instagram.com/dripverse_co/"
+        target="_blank"
+        class="icon"
+      >◎</a>
+
+      <a href="cart.html" class="icon">🛒</a>
+    </nav>
+
+  </header>
+
+
+  <main class="auth-container">
+
+    <div class="auth-box">
+
+      <div class="auth-logo">DRIPVERSE</div>
+
+      <div class="auth-subtitle">
+        Your account. Your style.
+      </div>
+
+
+      <div class="auth-tabs">
+
+        <button
+          class="auth-tab active"
+          id="loginTab"
+          type="button"
+        >
+          LOGIN
+        </button>
+
+        <button
+          class="auth-tab"
+          id="signupTab"
+          type="button"
+        >
+          CREATE ACCOUNT
+        </button>
+
+      </div>
+
+
+      <!-- LOGIN -->
+
+      <form id="loginForm" class="auth-form active">
+
+        <label for="loginEmail">Email</label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your email"
+          required
+        >
+
+        <label for="loginPassword">Password</label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter your password"
+          required
+        >
+
+        <button
+          class="auth-button"
+          type="submit"
+        >
+          LOGIN
+        </button>
+
+      </form>
+
+
+      <!-- SIGNUP -->
+
+      <form id="signupForm" class="auth-form">
+
+        <label for="signupName">Name</label>
+
+        <input
+          id="signupName"
+          type="text"
+          placeholder="Your name"
+          required
+        >
+
+        <label for="signupEmail">Email</label>
+
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="Enter your email"
+          required
+        >
+
+        <label for="signupPassword">Password</label>
+
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="Create a password"
+          minlength="8"
+          required
+        >
+
+        <button
+          class="auth-button"
+          type="submit"
+        >
+          CREATE ACCOUNT
+        </button>
+
+      </form>
+
+
+      <div id="authMessage" class="auth-message"></div>
+
+      <a href="index.html" class="back-home">
+        ← Back to DRIPVERSE
+      </a>
+
+    </div>
+
+  </main>
+
+
+  <script type="module">
+
+    import {
+      login,
+      signup
+    } from "./js/auth.js";
+
+
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+
+    const message = document.getElementById("authMessage");
+
+
+    function showMessage(text, success = false) {
+      message.textContent = text;
+      message.style.color = success ? "#167a35" : "#c62828";
+    }
+
+
+    loginTab.addEventListener("click", () => {
+
+      loginTab.classList.add("active");
+      signupTab.classList.remove("active");
+
+      loginForm.classList.add("active");
+      signupForm.classList.remove("active");
+
+      showMessage("");
+
+    });
+
+
+    signupTab.addEventListener("click", () => {
+
+      signupTab.classList.add("active");
+      loginTab.classList.remove("active");
+
+      signupForm.classList.add("active");
+      loginForm.classList.remove("active");
+
+      showMessage("");
+
+    });
+
+
+    loginForm.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const button = loginForm.querySelector("button");
+
+      button.disabled = true;
+      button.textContent = "LOGGING IN...";
+
+      const email =
+        document.getElementById("loginEmail").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+
+      const result = await login(email, password);
+
+
+      if (result.success) {
+
+        showMessage(
+          "Login successful. Redirecting...",
+          true
+        );
+
+        setTimeout(() => {
+          window.location.href = "account.html";
+        }, 800);
+
+      } else {
+
+        showMessage(result.message);
+
+        button.disabled = false;
+        button.textContent = "LOGIN";
+
+      }
+
+    });
+
+
+    signupForm.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const button = signupForm.querySelector("button");
+
+      button.disabled = true;
+      button.textContent = "CREATING...";
+
+
+      const name =
+        document.getElementById("signupName").value.trim();
+
+      const email =
+        document.getElementById("signupEmail").value.trim();
+
+      const password =
+        document.getElementById("signupPassword").value;
+
+
+      const result =
+        await signup(name, email, password);
+
+
+      if (result.success) {
+
+        showMessage(
+          "Account created. Redirecting...",
+          true
+        );
+
+        setTimeout(() => {
+          window.location.href = "account.html";
+        }, 800);
+
+      } else {
+
+        showMessage(result.message);
+
+        button.disabled = false;
+        button.textContent = "CREATE ACCOUNT";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
