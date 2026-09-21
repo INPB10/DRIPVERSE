@@ -1,421 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Login — DRIPVERSE</title>
+<title>Account — DRIPVERSE</title>
 
-  <link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <style>
-    .auth-container {
-      min-height: calc(100vh - 80px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      background: #f7f6f2;
-    }
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
-    .auth-box {
-      width: 100%;
-      max-width: 430px;
-      background: #fff;
-      padding: 42px;
-      border: 1px solid #e7e7e7;
-      border-radius: 18px;
-      box-shadow: 0 15px 45px rgba(0,0,0,.07);
-    }
+<link rel="stylesheet" href="css/style.css">
 
-    .auth-logo {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
-    }
+<style>
 
-    .auth-subtitle {
-      text-align: center;
-      color: #777;
-      margin-bottom: 32px;
-    }
+*{
+box-sizing:border-box;
+}
 
-    .auth-tabs {
-      display: flex;
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 25px;
-    }
+body{
+margin:0;
+font-family:"DM Sans",sans-serif;
+background:#f5f2ec;
+color:#111;
+}
 
-    .auth-tab {
-      flex: 1;
-      padding: 13px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      font-weight: 700;
-      color: #888;
-    }
 
-    .auth-tab.active {
-      color: #111;
-      border-bottom: 2px solid #111;
-    }
+.account-page{
 
-    .auth-form {
-      display: none;
-    }
+min-height:100vh;
 
-    .auth-form.active {
-      display: block;
-    }
+display:grid;
 
-    .auth-form label {
-      display: block;
-      margin: 15px 0 7px;
-      font-size: 14px;
-      font-weight: 700;
-    }
+grid-template-columns:1fr 450px;
 
-    .auth-form input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 9px;
-      font-size: 15px;
-      outline: none;
-    }
+}
 
-    .auth-form input:focus {
-      border-color: #111;
-    }
 
-    .auth-button {
-      width: 100%;
-      margin-top: 22px;
-      padding: 15px;
-      border: 0;
-      border-radius: 9px;
-      background: #111;
-      color: white;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-    }
+/* LEFT BRAND */
 
-    .auth-button:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
+.account-brand{
 
-    .auth-message {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 14px;
-      min-height: 20px;
-    }
+background:#111;
 
-    .back-home {
-      display: block;
-      text-align: center;
-      margin-top: 25px;
-      color: #111;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-    }
-  </style>
+color:white;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+padding:80px;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.account-brand:before{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+
+height:500px;
+
+background:#333;
+
+border-radius:50%;
+
+right:-200px;
+
+top:-150px;
+
+opacity:.25;
+
+animation:move 8s infinite alternate;
+
+}
+
+
+@keyframes move{
+
+from{
+transform:translateY(0);
+}
+
+to{
+transform:translateY(80px);
+}
+
+}
+
+
+
+.brand-title{
+
+font-family:"Playfair Display",serif;
+
+font-size:90px;
+
+letter-spacing:-5px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+
+.brand-quote{
+
+font-family:"Playfair Display",serif;
+
+font-size:28px;
+
+font-style:italic;
+
+margin-top:20px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+
+.brand-small{
+
+margin-top:40px;
+
+font-size:11px;
+
+letter-spacing:3px;
+
+opacity:.6;
+
+}
+
+
+/* FORM */
+
+
+.account-box{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:35px;
+
+}
+
+
+.auth-card{
+
+width:100%;
+
+max-width:380px;
+
+background:white;
+
+padding:38px;
+
+border-radius:24px;
+
+box-shadow:0 25px 70px rgba(0,0,0,.08);
+
+animation:fade .5s ease;
+
+}
+
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:none;
+}
+
+}
+
+
+
+.auth-logo{
+
+font-family:"Playfair Display",serif;
+
+font-size:36px;
+
+text-align:center;
+
+letter-spacing:3px;
+
+}
+
+
+
+.subtitle{
+
+text-align:center;
+
+color:#777;
+
+font-size:13px;
+
+margin:10px 0 30px;
+
+}
+
+
+
+.tabs{
+
+display:flex;
+
+border-bottom:1px solid #ddd;
+
+margin-bottom:25px;
+
+}
+
+
+.tab{
+
+flex:1;
+
+border:0;
+
+background:none;
+
+padding:12px;
+
+font-weight:700;
+
+cursor:pointer;
+
+color:#888;
+
+}
+
+
+
+.tab.active{
+
+color:#111;
+
+border-bottom:2px solid #111;
+
+}
+
+
+
+.form{
+
+display:none;
+
+}
+
+
+.form.active{
+
+display:block;
+
+}
+
+
+
+label{
+
+display:block;
+
+font-size:12px;
+
+font-weight:700;
+
+margin:15px 0 7px;
+
+}
+
+
+
+input{
+
+width:100%;
+
+padding:14px;
+
+border:1px solid #ddd;
+
+border-radius:14px;
+
+font-size:14px;
+
+outline:none;
+
+background:#faf9f6;
+
+}
+
+
+
+input:focus{
+
+border-color:#111;
+
+}
+
+
+
+.submit-btn{
+
+width:100%;
+
+margin-top:25px;
+
+padding:14px;
+
+border:none;
+
+border-radius:14px;
+
+background:#111;
+
+color:white;
+
+font-size:11px;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+
+.submit-btn:hover{
+
+transform:translateY(-2px);
+
+}
+
+
+
+.message{
+
+text-align:center;
+
+font-size:13px;
+
+margin-top:15px;
+
+min-height:20px;
+
+}
+
+
+
+.back{
+
+display:block;
+
+text-align:center;
+
+margin-top:25px;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+
+
+@media(max-width:850px){
+
+.account-page{
+
+grid-template-columns:1fr;
+
+}
+
+
+.account-brand{
+
+display:none;
+
+}
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <div class="topbar">
-    ✨ Online payments only. Cash on delivery coming soon.
-  </div>
 
-  <header class="header">
+<div class="account-page">
 
-    <nav class="nav-left">
-      <a href="shop.html">Shop</a>
-      <a href="shop.html?category=gym">Gym Wear</a>
-      <a href="shop.html?category=men">Men's Wear</a>
-      <a href="shop.html?category=genz">GenZ Wear</a>
-    </nav>
 
-    <a href="index.html" class="logo">DRIPVERSE</a>
+<section class="account-brand">
 
-    <nav class="nav-right">
-      <a href="account.html" class="icon">♙</a>
+<div class="brand-title">
+DRIPVERSE
+</div>
 
-      <a
-        href="https://www.instagram.com/dripverse_co/"
-        target="_blank"
-        class="icon"
-      >◎</a>
+<div class="brand-quote">
+"Wear what feels like you."
+</div>
 
-      <a href="cart.html" class="icon">🛒</a>
-    </nav>
+<div class="brand-small">
+CONSIDERED EVERYDAY ESSENTIALS
+</div>
 
-  </header>
+</section>
 
 
-  <main class="auth-container">
 
-    <div class="auth-box">
+<section class="account-box">
 
-      <div class="auth-logo">DRIPVERSE</div>
 
-      <div class="auth-subtitle">
-        Your account. Your style.
-      </div>
+<div class="auth-card">
 
 
-      <div class="auth-tabs">
+<div class="auth-logo">
+DRIPVERSE
+</div>
 
-        <button
-          class="auth-tab active"
-          id="loginTab"
-          type="button"
-        >
-          LOGIN
-        </button>
 
-        <button
-          class="auth-tab"
-          id="signupTab"
-          type="button"
-        >
-          CREATE ACCOUNT
-        </button>
+<div class="subtitle">
+Your account. Your style.
+</div>
 
-      </div>
 
 
-      <!-- LOGIN -->
+<div class="tabs">
 
-      <form id="loginForm" class="auth-form active">
+<button id="loginTab" class="tab active">
+LOGIN
+</button>
 
-        <label for="loginEmail">Email</label>
+<button id="signupTab" class="tab">
+CREATE ACCOUNT
+</button>
 
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Enter your email"
-          required
-        >
+</div>
 
-        <label for="loginPassword">Password</label>
 
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter your password"
-          required
-        >
 
-        <button
-          class="auth-button"
-          type="submit"
-        >
-          LOGIN
-        </button>
+<form id="loginForm" class="form active">
 
-      </form>
 
+<label>Email</label>
 
-      <!-- SIGNUP -->
+<input id="loginEmail" type="email" placeholder="Enter email" required>
 
-      <form id="signupForm" class="auth-form">
 
-        <label for="signupName">Name</label>
+<label>Password</label>
 
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Your name"
-          required
-        >
+<input id="loginPassword" type="password" placeholder="Enter password" required>
 
-        <label for="signupEmail">Email</label>
 
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Enter your email"
-          required
-        >
+<button class="submit-btn">
+LOGIN
+</button>
 
-        <label for="signupPassword">Password</label>
 
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="Create a password"
-          minlength="8"
-          required
-        >
+</form>
 
-        <button
-          class="auth-button"
-          type="submit"
-        >
-          CREATE ACCOUNT
-        </button>
 
-      </form>
 
 
-      <div id="authMessage" class="auth-message"></div>
+<form id="signupForm" class="form">
 
-      <a href="index.html" class="back-home">
-        ← Back to DRIPVERSE
-      </a>
 
-    </div>
+<label>Name</label>
 
-  </main>
+<input id="signupName" type="text" placeholder="Your name" required>
 
 
-  <script type="module">
+<label>Email</label>
 
-    import {
-      login,
-      signup
-    } from "./js/auth.js";
+<input id="signupEmail" type="email" placeholder="Enter email" required>
 
 
-    const loginTab = document.getElementById("loginTab");
-    const signupTab = document.getElementById("signupTab");
+<label>Password</label>
 
-    const loginForm = document.getElementById("loginForm");
-    const signupForm = document.getElementById("signupForm");
+<input id="signupPassword" type="password" placeholder="Create password" minlength="8" required>
 
-    const message = document.getElementById("authMessage");
 
+<button class="submit-btn">
+CREATE ACCOUNT
+</button>
 
-    function showMessage(text, success = false) {
-      message.textContent = text;
-      message.style.color = success ? "#167a35" : "#c62828";
-    }
 
+</form>
 
-    loginTab.addEventListener("click", () => {
 
-      loginTab.classList.add("active");
-      signupTab.classList.remove("active");
 
-      loginForm.classList.add("active");
-      signupForm.classList.remove("active");
+<div id="authMessage" class="message"></div>
 
-      showMessage("");
 
-    });
+<a class="back" href="index.html">
+← Back to DRIPVERSE
+</a>
 
 
-    signupTab.addEventListener("click", () => {
+</div>
 
-      signupTab.classList.add("active");
-      loginTab.classList.remove("active");
 
-      signupForm.classList.add("active");
-      loginForm.classList.remove("active");
+</section>
 
-      showMessage("");
 
-    });
+</div>
 
 
-    loginForm.addEventListener("submit", async (event) => {
 
-      event.preventDefault();
+<script type="module">
 
-      const button = loginForm.querySelector("button");
 
-      button.disabled = true;
-      button.textContent = "LOGGING IN...";
+import {login,signup} from "./js/auth.js";
 
-      const email =
-        document.getElementById("loginEmail").value.trim();
 
-      const password =
-        document.getElementById("loginPassword").value;
+const loginTab=document.getElementById("loginTab");
+const signupTab=document.getElementById("signupTab");
 
+const loginForm=document.getElementById("loginForm");
+const signupForm=document.getElementById("signupForm");
 
-      const result = await login(email, password);
+const message=document.getElementById("authMessage");
 
 
-      if (result.success) {
 
-        showMessage(
-          "Login successful. Redirecting...",
-          true
-        );
+function show(text,success=false){
 
-        setTimeout(() => {
-          window.location.href = "account.html";
-        }, 800);
+message.textContent=text;
 
-      } else {
+message.style.color=
+success ? "green":"#c62828";
 
-        showMessage(result.message);
+}
 
-        button.disabled = false;
-        button.textContent = "LOGIN";
 
-      }
 
-    });
+loginTab.onclick=()=>{
 
+loginTab.classList.add("active");
 
-    signupForm.addEventListener("submit", async (event) => {
+signupTab.classList.remove("active");
 
-      event.preventDefault();
+loginForm.classList.add("active");
 
-      const button = signupForm.querySelector("button");
+signupForm.classList.remove("active");
 
-      button.disabled = true;
-      button.textContent = "CREATING...";
+};
 
 
-      const name =
-        document.getElementById("signupName").value.trim();
 
-      const email =
-        document.getElementById("signupEmail").value.trim();
+signupTab.onclick=()=>{
 
-      const password =
-        document.getElementById("signupPassword").value;
+signupTab.classList.add("active");
 
+loginTab.classList.remove("active");
 
-      const result =
-        await signup(name, email, password);
+signupForm.classList.add("active");
 
+loginForm.classList.remove("active");
 
-      if (result.success) {
+};
 
-        showMessage(
-          "Account created. Redirecting...",
-          true
-        );
 
-        setTimeout(() => {
-          window.location.href = "account.html";
-        }, 800);
 
-      } else {
 
-        showMessage(result.message);
+loginForm.addEventListener("submit",async e=>{
 
-        button.disabled = false;
-        button.textContent = "CREATE ACCOUNT";
+e.preventDefault();
 
-      }
 
-    });
+const result=await login(
+loginEmail.value.trim(),
+loginPassword.value
+);
 
-  </script>
+
+if(result.success){
+
+show("Login successful...",true);
+
+setTimeout(()=>{
+
+location.href="account.html";
+
+},800);
+
+
+}else{
+
+show(result.message);
+
+}
+
+
+});
+
+
+
+
+signupForm.addEventListener("submit",async e=>{
+
+e.preventDefault();
+
+
+const result=await signup(
+
+signupName.value.trim(),
+
+signupEmail.value.trim(),
+
+signupPassword.value
+
+);
+
+
+
+if(result.success){
+
+show("Account created...",true);
+
+setTimeout(()=>{
+
+location.href="account.html";
+
+},800);
+
+
+}else{
+
+show(result.message);
+
+}
+
+
+
+});
+
+
+</script>
+
 
 </body>
 </html>
