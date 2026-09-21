@@ -1,617 +1,678 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Cart — DRIPVERSE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Cart — DRIPVERSE</title>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet"
-  >
+<link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="css/style.css">
 
-  <style>
+<style>
 
-    .cart-page {
-      min-height: 100vh;
-      background: #f4f2ed;
-      padding: 70px 5vw 110px;
-    }
+.cart-page {
+  min-height:100vh;
+  background:#f7f6f2;
+  padding:70px 25px;
+}
 
-    .cart-container {
-      max-width: 1450px;
-      margin: auto;
-    }
 
-    .cart-heading {
-      padding-bottom: 45px;
-      border-bottom: 1px solid #d9d6ce;
-    }
+.cart-wrapper {
+  max-width:1200px;
+  margin:auto;
+}
 
-    .cart-eyebrow {
-      margin: 0 0 18px;
-      color: #77736c;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-    }
 
-    .cart-title {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(55px, 8vw, 100px);
-      font-weight: 400;
-      line-height: .9;
-      letter-spacing: -4px;
-    }
+.cart-title {
+  font-family:"Playfair Display",serif;
+  font-size:55px;
+  margin-bottom:45px;
+}
 
-    .cart-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 380px;
-      gap: 70px;
-      margin-top: 45px;
-      align-items: start;
-    }
 
-    .cart-items {
-      min-width: 0;
-    }
+/* layout */
 
-    .cart-item {
-      display: grid;
-      grid-template-columns: 150px minmax(0, 1fr) auto;
-      gap: 25px;
-      padding: 0 0 25px;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #d9d6ce;
-    }
+.cart-layout {
 
-    .cart-image-wrap {
-      background: #e7e4dd;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-    }
+display:grid;
+grid-template-columns:1.5fr .8fr;
+gap:35px;
 
-    .cart-image {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
+}
 
-    .cart-item-info {
-      padding-top: 4px;
-    }
 
-    .cart-category {
-      margin: 0 0 9px;
-      color: #858178;
-      font-size: 9px;
-      letter-spacing: 1.7px;
-      text-transform: uppercase;
-    }
+/* items */
 
-    .cart-item-name {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 25px;
-      font-weight: 400;
-      line-height: 1.1;
-    }
+.cart-items {
 
-    .cart-size {
-      margin-top: 14px;
-      color: #77736c;
-      font-size: 12px;
-    }
+display:flex;
+flex-direction:column;
+gap:18px;
 
-    .quantity-control {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 25px;
-      border: 1px solid #cfcac0;
-    }
+}
 
-    .quantity-control button {
-      width: 35px;
-      height: 35px;
-      border: 0;
-      background: transparent;
-      font-size: 16px;
-      cursor: pointer;
-    }
 
-    .quantity-control span {
-      min-width: 35px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-    }
+.cart-card {
 
-    .cart-item-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
-      min-height: 145px;
-    }
+background:white;
+border:1px solid #e6e3dc;
+border-radius:22px;
+padding:18px;
 
-    .cart-item-price {
-      font-size: 14px;
-      font-weight: 600;
-    }
+display:flex;
+gap:22px;
 
-    .remove-button {
-      border: 0;
-      padding: 0;
-      background: transparent;
-      color: #77736c;
-      font-family: inherit;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      cursor: pointer;
-    }
+animation:fade .5s ease;
 
-    .remove-button:hover {
-      color: #11110f;
-    }
+}
 
-    .summary {
-      position: sticky;
-      top: 30px;
-      background: #11110f;
-      color: #fff;
-      padding: 32px;
-    }
 
-    .summary-label {
-      margin: 0 0 28px;
-      color: #aaa79f;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+@keyframes fade {
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(255,255,255,.15);
-      font-size: 13px;
-    }
+from{
+opacity:0;
+transform:translateY(15px);
+}
 
-    .summary-total {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
-      font-size: 20px;
-      font-weight: 600;
-    }
+to{
+opacity:1;
+transform:none;
+}
 
-    .summary-note {
-      margin: 20px 0 0;
-      color: #aaa79f;
-      font-size: 11px;
-      line-height: 1.7;
-    }
+}
 
-    .checkout-button {
-      width: 100%;
-      height: 55px;
-      margin-top: 28px;
-      border: 0;
-      background: #f4f2ed;
-      color: #11110f;
-      font-family: inherit;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      cursor: pointer;
-    }
 
-    .checkout-button:hover {
-      background: #fff;
-    }
 
-    .empty-cart {
-      max-width: 700px;
-      margin: 80px auto;
-      text-align: center;
-    }
+.cart-image {
 
-    .empty-cart h2 {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 52px;
-      font-weight: 400;
-    }
+width:130px;
+height:130px;
+border-radius:16px;
+object-fit:cover;
+background:#eee;
 
-    .empty-cart p {
-      margin: 15px 0 0;
-      color: #77736c;
-      font-size: 13px;
-    }
+}
 
-    .empty-cart a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 25px;
-      background: #11110f;
-      color: #fff;
-      text-decoration: none;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-    }
 
-    @media (max-width: 900px) {
 
-      .cart-layout {
-        grid-template-columns: 1fr;
-        gap: 45px;
-      }
+.cart-info {
 
-      .summary {
-        position: static;
-      }
+flex:1;
 
-    }
+}
 
-    @media (max-width: 600px) {
 
-      .cart-page {
-        padding: 45px 20px 80px;
-      }
+.cart-info h3 {
 
-      .cart-title {
-        font-size: 62px;
-        letter-spacing: -2.5px;
-      }
+font-size:20px;
+margin-bottom:8px;
 
-      .cart-item {
-        grid-template-columns: 95px minmax(0, 1fr);
-        gap: 15px;
-      }
+}
 
-      .cart-item-right {
-        grid-column: 2;
-        min-height: auto;
-        flex-direction: row;
-        align-items: center;
-      }
 
-      .cart-item-name {
-        font-size: 20px;
-      }
+.cart-info span {
 
-      .quantity-control {
-        margin-top: 18px;
-      }
+color:#777;
+font-size:14px;
 
-      .summary {
-        padding: 25px;
-      }
+}
 
-      .empty-cart h2 {
-        font-size: 40px;
-      }
 
-    }
+.price {
 
-  </style>
+font-weight:800;
+margin-top:12px;
+
+}
+
+
+
+.remove {
+
+margin-top:15px;
+
+border:none;
+background:#f2f2f2;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+font-size:12px;
+
+}
+
+
+
+
+/* summary */
+
+
+.summary {
+
+background:white;
+
+border:1px solid #e6e3dc;
+
+border-radius:25px;
+
+padding:30px;
+
+height:max-content;
+
+}
+
+
+
+.summary h2 {
+
+font-size:25px;
+
+margin-bottom:25px;
+
+}
+
+
+
+.row {
+
+display:flex;
+
+justify-content:space-between;
+
+margin:15px 0;
+
+color:#555;
+
+}
+
+
+
+.total {
+
+font-size:20px;
+font-weight:800;
+color:#111;
+
+border-top:1px solid #ddd;
+
+padding-top:20px;
+
+}
+
+
+
+.checkout {
+
+width:100%;
+
+margin-top:25px;
+
+padding:14px;
+
+border:none;
+
+border-radius:30px;
+
+background:#111;
+
+color:white;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.checkout:hover {
+
+transform:translateY(-3px);
+
+}
+
+
+
+
+.info-box {
+
+margin-top:25px;
+
+background:#f7f6f2;
+
+padding:18px;
+
+border-radius:18px;
+
+font-size:13px;
+
+color:#666;
+
+line-height:1.6;
+
+}
+
+
+
+/* empty */
+
+.empty {
+
+background:white;
+
+border-radius:25px;
+
+padding:70px 30px;
+
+text-align:center;
+
+}
+
+
+
+.empty a {
+
+display:inline-block;
+
+margin-top:20px;
+
+background:#111;
+
+color:white;
+
+padding:13px 25px;
+
+border-radius:30px;
+
+}
+
+
+
+
+@media(max-width:800px){
+
+.cart-layout{
+
+grid-template-columns:1fr;
+
+}
+
+
+.cart-title{
+
+font-size:40px;
+
+}
+
+
+.cart-card{
+
+flex-direction:column;
+
+}
+
+
+.cart-image{
+
+width:100%;
+height:280px;
+
+}
+
+}
+
+
+</style>
 
 </head>
 
+
+
 <body>
 
-  <main class="cart-page">
-
-<div class="cart-container">
-
-  <header class="cart-heading">
-
-    <p class="cart-eyebrow">
-      DRIPVERSE / BAG
-    </p>
-
-    <h1 class="cart-title">
-      Your cart.
-    </h1>
-
-  </header>
 
 
-  <div id="cartContent"></div>
+<header class="site-header">
+
+<a href="index.html" class="brand">
+DRIPVERSE
+</a>
+
+
+<nav class="main-nav">
+
+<a href="shop.html?category=men">
+MEN'S WEAR
+</a>
+
+<a href="shop.html?category=gym">
+GYM WEAR
+</a>
+
+<a href="shop.html?category=genz">
+STREET WEAR
+</a>
+
+</nav>
+
+
+
+<div class="nav-actions">
+
+
+<a href="https://instagram.com/dripverse_co/" target="_blank" class="icon-link">
+◎
+</a>
+
+
+<a href="account.html" class="icon-link">
+◯
+</a>
+
+
+<a href="cart.html" class="icon-link">
+🛒
+</a>
+
 
 </div>
 
-  </main>
 
-  <script>
+</header>
 
-    const cartContent =
-      document.getElementById("cartContent");
 
 
-    function getCart() {
 
-      return JSON.parse(
-        localStorage.getItem("dripverse_cart") || "[]"
-      );
+<main class="cart-page">
 
-    }
 
+<div class="cart-wrapper">
 
-    function saveCart(cart) {
 
-      localStorage.setItem(
-        "dripverse_cart",
-        JSON.stringify(cart)
-      );
+<h1 class="cart-title">
+Your Cart
+</h1>
 
-    }
 
 
-    function changeQuantity(index, change) {
+<div id="cartContent"></div>
 
-      const cart = getCart();
 
-      if (!cart[index]) return;
+</div>
 
-      cart[index].quantity =
-        Math.max(
-          1,
-          (cart[index].quantity || 1) + change
-        );
 
-      saveCart(cart);
+</main>
 
-      renderCart();
 
-    }
 
 
-    function removeItem(index) {
+<script>
 
-      const cart = getCart();
 
-      cart.splice(index, 1);
+const container =
+document.getElementById("cartContent");
 
-      saveCart(cart);
 
-      renderCart();
 
-    }
+function getCart(){
 
+return JSON.parse(
+localStorage.getItem("dripverse_cart") || "[]"
+);
 
-    function renderCart() {
+}
 
-      const cart = getCart();
 
 
-      if (!cart.length) {
 
-        cartContent.innerHTML = `
+function renderCart(){
 
-          <div class="empty-cart">
 
-            <h2>
-              Your cart is empty.
-            </h2>
+const cart=getCart();
 
-            <p>
-              Nothing here yet. Discover the latest DRIPVERSE pieces.
-            </p>
 
-            <a href="shop.html">
-              EXPLORE THE SHOP
-            </a>
 
-          </div>
+if(cart.length===0){
 
-        `;
 
-        return;
+container.innerHTML=`
 
-      }
+<div class="empty">
 
+<h2>Your cart is empty</h2>
 
-      let total = 0;
+<p>
+Discover something new from DRIPVERSE.
+</p>
 
 
-      const items = cart.map((item, index) => {
+<a href="shop.html">
+SHOP NOW
+</a>
 
-        const quantity =
-          item.quantity || 1;
 
-        const itemTotal =
-          item.price * quantity;
+</div>
 
-        total += itemTotal;
+`;
 
+return;
 
-        return `
+}
 
-          <article class="cart-item">
 
-            <div class="cart-image-wrap">
 
-              <img
-                class="cart-image"
-                src="${item.image}"
-                alt="${item.name}"
-              >
+let total=0;
 
-            </div>
 
 
-            <div class="cart-item-info">
+let products=cart.map((item,index)=>{
 
-              <p class="cart-category">
-                DRIPVERSE / ${item.id.split("-")[0]}
-              </p>
 
-              <h2 class="cart-item-name">
-                ${item.name}
-              </h2>
+total += item.price * item.quantity;
 
-              <p class="cart-size">
-                Size — ${item.size}
-              </p>
 
 
-              <div class="quantity-control">
+return `
 
-                <button
-                  type="button"
-                  onclick="changeQuantity(${index}, -1)"
-                  aria-label="Decrease quantity"
-                >
-                  −
-                </button>
+<div class="cart-card">
 
-                <span>
-                  ${quantity}
-                </span>
 
-                <button
-                  type="button"
-                  onclick="changeQuantity(${index}, 1)"
-                  aria-label="Increase quantity"
-                >
-                  +
-                </button>
+<img 
+src="${item.image}"
+class="cart-image"
+>
 
-              </div>
 
-            </div>
+<div class="cart-info">
 
 
-            <div class="cart-item-right">
+<h3>${item.name}</h3>
 
-              <strong class="cart-item-price">
-                ₹${itemTotal}
-              </strong>
 
-              <button
-                class="remove-button"
-                type="button"
-                onclick="removeItem(${index})"
-              >
-                REMOVE
-              </button>
+<span>
+Size: ${item.size}
+</span>
 
-            </div>
 
-          </article>
+<div class="price">
+₹${item.price}
+</div>
 
-        `;
 
-      }).join("");
+<button 
+class="remove"
+onclick="removeItem(${index})"
+>
+REMOVE
+</button>
 
 
-      cartContent.innerHTML = `
+</div>
 
-        <div class="cart-layout">
 
-          <section class="cart-items">
+</div>
 
-            ${items}
 
-          </section>
+`;
 
+}).join("");
 
-          <aside class="summary">
 
-            <p class="summary-label">
-              Order summary
-            </p>
 
-            <div class="summary-row">
 
-              <span>
-                Subtotal
-              </span>
+container.innerHTML=`
 
-              <span>
-                ₹${total}
-              </span>
 
-            </div>
+<div class="cart-layout">
 
-            <div class="summary-row">
 
-              <span>
-                Delivery
-              </span>
+<div class="cart-items">
 
-              <span>
-                Calculated at checkout
-              </span>
+${products}
 
-            </div>
+</div>
 
 
-            <div class="summary-total">
 
-              <span>
-                Total
-              </span>
 
-              <span>
-                ₹${total}
-              </span>
+<div class="summary">
 
-            </div>
 
+<h2>
+Order Summary
+</h2>
 
-            <p class="summary-note">
-              Online payment only. Orders are verified
-              within 2–3 hours after payment.
-            </p>
 
 
-            <button
-              class="checkout-button"
-              type="button"
-              onclick="checkout()"
-            >
-              PROCEED TO CHECKOUT
-            </button>
+<div class="row">
 
-          </aside>
+<span>
+Subtotal
+</span>
 
-        </div>
+<span>
+₹${total}
+</span>
 
-      `;
+</div>
 
-    }
 
+<div class="row">
 
-    function checkout() {
+<span>
+Delivery
+</span>
 
-      alert(
-        "Online checkout will be connected next."
-      );
+<span>
+FREE
+</span>
 
-    }
+</div>
 
 
-    renderCart();
 
-  </script>
+<div class="row total">
+
+<span>
+Total
+</span>
+
+<span>
+₹${total}
+</span>
+
+
+</div>
+
+
+
+<button class="checkout"
+onclick="checkout()">
+
+CHECKOUT
+
+</button>
+
+
+
+<div class="info-box">
+
+✓ Secure online payment
+
+<br>
+
+✓ Order verified within 2–3 hours
+
+<br>
+
+✓ No returns
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+`;
+
+
+
+}
+
+
+
+
+function removeItem(index){
+
+let cart=getCart();
+
+cart.splice(index,1);
+
+
+localStorage.setItem(
+"dripverse_cart",
+JSON.stringify(cart)
+);
+
+
+renderCart();
+
+
+}
+
+
+
+
+function checkout(){
+
+alert(
+"Payment gateway will be connected soon."
+);
+
+}
+
+
+
+renderCart();
+
+
+
+</script>
+
 
 </body>
 
